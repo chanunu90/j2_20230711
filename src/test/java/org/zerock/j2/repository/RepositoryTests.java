@@ -106,55 +106,50 @@ public class RepositoryTests {
 
     }
 
-
     @Test
-    public void testSelectOne(){
+    public void testSelectOne() {
+
         Long bno = 100L;
 
         FileBoard board = repository.selectOne(bno);
+
         System.out.println(board);
         System.out.println(board.getImages());
-        
-        
+
     }
 
-
-    @Test
     @Commit
     @Transactional
-    public void testDelete(){
-        Long bno = 85L;
+    @Test
+    public void testDelete() {
 
+        Long bno = 301L;
 
         repository.deleteById(bno);
+
     }
 
-    @Test
     @Commit
     @Transactional
-    public void testUpdate(){
-        Long bno = 20L;
+    @Test
+    public void testUpdate() {
 
+        Optional<FileBoard> result = repository.findById(20L);
 
-        Optional<FileBoard> file = repository.findById(bno);
-        FileBoard board = file.orElseThrow();
+        FileBoard board = result.orElseThrow();
 
-        board.clearImages();
-
-
+        board.cleanImages();
+        
         FileBoardImage img1 =  FileBoardImage.builder()
-        .uuid(UUID.randomUUID().toString())
-        .fname("zzz.jpg")
-        .build();
+            .uuid(UUID.randomUUID().toString())
+            .fname("zzzz.jpg")
+            .build();
 
         board.addImage(img1);
 
         repository.save(board);
 
 
-        // repository.deleteById(bno);
     }
-
-
 
 }

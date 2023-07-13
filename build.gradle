@@ -35,6 +35,8 @@ dependencies {
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	//썸네일 작업
+	implementation 'net.coobird:thumbnailator:0.4.16'
 
 	// Querydsl 관련 설정2
 	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}:jakarta"

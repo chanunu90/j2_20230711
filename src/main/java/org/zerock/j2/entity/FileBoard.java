@@ -2,6 +2,7 @@ package org.zerock.j2.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.annotations.BatchSize;
 
@@ -13,7 +14,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,10 +25,9 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = "images") // exclude 제외한다.
-// @ToString
+@ToString(exclude = "images")
 public class FileBoard {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bno;
@@ -38,28 +37,20 @@ public class FileBoard {
     private String content;
 
     private String writer;
-    
-    @BatchSize(size = 20)
+
+    @BatchSize(size=20)
     @OneToMany(cascade = {CascadeType.ALL} , fetch = FetchType.LAZY , orphanRemoval = true)
     @JoinColumn(name="board")
     @Builder.Default
-    private List<FileBoardImage> images = new ArrayList<>(); // 바꿀 수 없다, 지우면 안됨
+    private List<FileBoardImage> images = new ArrayList<>();
 
     public void addImage(FileBoardImage boardImage){
-
-        // 순번을 준다 size값으로
         boardImage.changeOrd(images.size());
-        // 이미지 추가
         images.add(boardImage);
-
-
     }
 
-    public void clearImages(){
+    public void cleanImages(){
         images.clear();
-        // repository.deleteById(bno);
     }
-
-
-
+    
 }
