@@ -107,6 +107,8 @@ public class FileUploader {
             }
 
         }
+        
+        log.info("==================uploadFileNames완료========================");
 
         return uploadFileNames;
     }
