@@ -16,7 +16,7 @@ public class ProductDTO {
     private Long pno;
 
     private String pname;
-    private String pdec;
+    private String pdesc;
     private int price;
 
     @Builder.Default

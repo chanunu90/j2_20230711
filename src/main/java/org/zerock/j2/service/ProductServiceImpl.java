@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProdcutService {
 
     Product product = Product.builder()
             .pname(productDTO.getPname())
-            .pdesc(productDTO.getPdec())
+            .pdesc(productDTO.getPdesc())
             .price(productDTO.getPrice())
             .build();
 
@@ -57,7 +57,7 @@ public class ProductServiceImpl implements ProdcutService {
             .pno(product.getPno())
             .pname(product.getPname())
             .price(product.getPrice())
-            .pdec(product.getPdesc())
+            .pdesc(product.getPdesc())
             .images(product.getImages().stream().map(pi -> pi.getFname()).collect(Collectors.toList()))
             .build();
     return dto;
@@ -88,7 +88,7 @@ public class ProductServiceImpl implements ProdcutService {
 
     //기본 정보들 수정
     product.changePaname(productDTO.getPname());
-    product.changePdesc(productDTO.getPdec());
+    product.changePdesc(productDTO.getPdesc());
     product.changePrice(productDTO.getPrice());
 
 

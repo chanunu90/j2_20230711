@@ -12,12 +12,14 @@ public class MemberDTO {
 
     private String email;
 
-
     private String pw;
 
     private String nickname;
 
     private boolean admin;
+
+    private String accessToken;
+    private String refreshToken;
 
 
 }
